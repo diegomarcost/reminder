@@ -19,6 +19,7 @@ class TasksController < ApplicationController
 	def create
       @task = Task.new(params[:task])
       if @task.save
+      		flash[:notice] = 'Task was successfully created.'
             redirect_to action: 'new'
       else
             redirect_to action: 'new'
@@ -31,6 +32,7 @@ class TasksController < ApplicationController
 
    	def update
    		if @task.update_attributes(params[:task])
+   			flash[:notice] = 'Task was successfully updated.'
    			redirect_to action: 'show'
    		else
    			redirect_to action: 'edit'
@@ -39,6 +41,7 @@ class TasksController < ApplicationController
 
    def destroy
    		@task.destroy
+   		flash[:notice] = 'Task was successfully destroyed.'
    		redirect_to action: 'new'	
    end
 
