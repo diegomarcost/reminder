@@ -1,0 +1,11 @@
+<%= form_for @task do |f| %>
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title %><br>
+  <%= f.label :description, "Description" %>
+  <%= f.text_field :description %><br>
+  <%= f.label :date, "Date" %>
+  <%= f.date_select :date %><br>
+  <%= f.label :days_before, "Days Before" %>
+  <%= f.text_field :days_before %><br>
+  <%= f.submit "Save" %>
+<% end %>

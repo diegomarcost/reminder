@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Date</th>
+    <th>Days</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><%= @task.title %></td>
+    <td><%= @task.description %></td>
+    <td><%= @task.date %></td>
+    <td><%= @task.days_before %></td>
+    <td><%= link_to 'Edit', edit_task_path(@task) %></td>
+    <td><%= link_to 'Back', tasks_path %></td>
+  </tr>
+</table>
