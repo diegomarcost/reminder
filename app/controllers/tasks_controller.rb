@@ -18,11 +18,12 @@ class TasksController < ApplicationController
 
 	def create
       @task = Task.new(params[:task])
+      @tasks = Task.all
       if @task.save
       		flash[:notice] = 'Task was successfully created.'
             redirect_to action: 'new'
       else
-            redirect_to action: 'new'
+            render action: 'new'
       end
    end
 
@@ -49,5 +50,4 @@ class TasksController < ApplicationController
 	    def find_task
 	      @task = Task.find(params[:id])
 	    end
-
 end
