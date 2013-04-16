@@ -1,11 +1,17 @@
 Reminders::Application.routes.draw do
+  get "sessions/new"
+
   get "users/new"
 
   resources :tasks
   resources :users
-  root to: "tasks#new"
+  resources :sessions
+
+  root to: "sessions#new"
 
   get "sign_up" => "users#new", :as => "sign_up"
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "log_out" => "sessions#destroy", :as => "log_out"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
