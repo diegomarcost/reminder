@@ -9,7 +9,7 @@ class TasksController < ApplicationController
 
 	def new
 		@task = Task.new
-		@tasks = Task.all	
+		@tasks = current_user.tasks.all
 	end
 
 	def show
@@ -17,8 +17,8 @@ class TasksController < ApplicationController
 	end
 
 	def create
-      @task = Task.new(params[:task])
-      @tasks = Task.all
+      @task = current_user.tasks.create(params[:task])
+      @tasks = current_user.tasks.all
       if @task.save
       		flash[:notice] = 'Task was successfully created.'
             redirect_to action: 'new'
@@ -51,3 +51,6 @@ class TasksController < ApplicationController
 	      @task = Task.find(params[:id])
 	    end 
 end
+
+
+
