@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
 	before_filter :find_task,
-    :only => [:show, :edit, :update, :destroy]
+    only: [:show, :edit, :update, :destroy]
 
 	def index
 		redirect_to action: 'new'
@@ -49,5 +49,5 @@ class TasksController < ApplicationController
    private
 	    def find_task
 	      @task = Task.find(params[:id])
-	    end
+	    end 
 end

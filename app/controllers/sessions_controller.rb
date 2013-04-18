@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  skip_before_filter :authorize, only: [:new, :create]
+
   def new
   end
 
@@ -6,7 +9,6 @@ class SessionsController < ApplicationController
 	  user = User.authenticate(params[:email], params[:password])
 	  if user
 	    session[:user_id] = user.id
-	    flash[:notice] = 'Logged in!'
 	    redirect_to new_task_path
 	  else
 	    flash.now.alert = "Invalid email or password"
