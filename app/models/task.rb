@@ -3,4 +3,6 @@ class Task < ActiveRecord::Base
 
   validates_presence_of :date, :days_before, :description, :title 
 
+  belongs_to :user
+
 end
