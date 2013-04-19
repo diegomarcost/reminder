@@ -5,4 +5,9 @@ class Task < ActiveRecord::Base
 
   belongs_to :user
 
+  def self.pasados(user)
+    pasados = select(:date).where("user_id = ? AND date <= ?", user.id, Date.today)	
+    pasados
+  end
+
 end
