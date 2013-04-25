@@ -18335,3 +18335,14 @@ Served asset /users.js - 304 Not Modified (0ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-25 09:31:13 -0500
 Served asset /application.js - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (17.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTasks (20130411235031)
+Migrating to CreateUsers (20130415220632)
+Migrating to AddUserIdToTasks (20130418170343)
+  [1m[35m (18.3ms)[0m  BEGIN
+  [1m[36m (121.2ms)[0m  [1mALTER TABLE "tasks" ADD COLUMN "user_id" integer[0m
+PG::Error: ERROR:  column "user_id" of relation "tasks" already exists
+: ALTER TABLE "tasks" ADD COLUMN "user_id" integer
+  [1m[35m (0.1ms)[0m  ROLLBACK

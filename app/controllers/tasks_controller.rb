@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
 
-	before_filter :find_task,
-    only: [:show, :edit, :update, :destroy]
+	before_filter :find_task, except: [:index, :new]
 
 	def index
 		redirect_to action: 'new'
@@ -9,48 +8,44 @@ class TasksController < ApplicationController
 
 	def new
 		@task = Task.new
-		@tasks = current_user.tasks.all
+		@future_tasks = Task.future(current_user)
+    @past_tasks = Task.past(current_user)
 	end
 
-	def show
-		
+	def show	
 	end
 
 	def create
-      @task = current_user.tasks.create(params[:task])
-      @tasks = current_user.tasks.all
-      if @task.save
-      		flash[:notice] = 'Task was successfully created.'
-            redirect_to action: 'new'
-      else
-            render action: 'new'
-      end
-   end
+    @task = current_user.tasks.create(params[:task])
+    @tasks = current_user.tasks.all
+    if @task.save
+  		flash[:notice] = 'Task was successfully created.'
+      redirect_to action: 'new'
+    else
+      render action: 'new'
+    end
+  end
 
-   	def edit
+ 	def edit
+ 	end
 
-   	end
+ 	def update
+ 		if @task.update_attributes(params[:task])
+ 			flash[:notice] = 'Task was successfully updated.'
+ 			redirect_to action: 'show'
+ 		else
+ 			redirect_to action: 'edit'
+ 		end
+ 	end
 
-   	def update
-   		if @task.update_attributes(params[:task])
-   			flash[:notice] = 'Task was successfully updated.'
-   			redirect_to action: 'show'
-   		else
-   			redirect_to action: 'edit'
-   		end
-   	end
+  def destroy
+		@task.destroy
+		flash[:notice] = 'Task was successfully destroyed.'
+		redirect_to action: 'new'	
+  end
 
-   def destroy
-   		@task.destroy
-   		flash[:notice] = 'Task was successfully destroyed.'
-   		redirect_to action: 'new'	
-   end
-
-   private
-	    def find_task
-	      @task = Task.find(params[:id])
-	    end 
+  private
+    def find_task
+      @task = Task.find(params[:id])
+    end 
 end
-
-
-

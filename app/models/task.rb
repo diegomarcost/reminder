@@ -5,9 +5,14 @@ class Task < ActiveRecord::Base
 
   belongs_to :user
 
-  def self.pasados(user)
-    pasados = where("user_id = ? AND date <= ?", user.id, Date.today)
-    pasados
+  def self.past(user)
+    past = where("user_id = ? AND date < ?", user.id, Date.today)
+    past
+  end
+
+  def self.future(user)
+    future = where("user_id = ? AND date >= ?", user.id, Date.today)
+    future
   end
 
 end
