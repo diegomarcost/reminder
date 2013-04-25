@@ -15,7 +15,7 @@
     <th></th>
   </tr>
  
-<% @future_tasks.each do |task| %>
+<% @past_tasks.each do |task| %>
   <tr>
     <td><%= task.title %></td>
     <td><%= task.description %></td>
@@ -41,7 +41,7 @@
     <th></th>
   </tr>
  
-<% @past_tasks.each do |task| %>
+<% @future_tasks.each do |task| %>
   <tr>
     <td><%= task.title %></td>
     <td><%= task.description %></td>
